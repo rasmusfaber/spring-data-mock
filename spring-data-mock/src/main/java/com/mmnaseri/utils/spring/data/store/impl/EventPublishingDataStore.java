@@ -1,16 +1,16 @@
 package com.mmnaseri.utils.spring.data.store.impl;
 
+import java.util.Collection;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import com.mmnaseri.utils.spring.data.domain.RepositoryMetadata;
 import com.mmnaseri.utils.spring.data.error.CorruptDataException;
 import com.mmnaseri.utils.spring.data.store.DataStore;
 import com.mmnaseri.utils.spring.data.store.DataStoreEvent;
 import com.mmnaseri.utils.spring.data.store.DataStoreEventListenerContext;
 import com.mmnaseri.utils.spring.data.store.DataStoreEventPublisher;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
-import java.io.Serializable;
-import java.util.Collection;
 
 /**
  * This implementation relies on a delegate data store to handling the actual storage/retrieval. It decorates the
@@ -19,7 +19,7 @@ import java.util.Collection;
  * @author Milad Naseri (mmnaseri@programmer.net)
  * @since 1.0 (10/6/15)
  */
-public class EventPublishingDataStore<K extends Serializable, E> implements DataStore<K, E>, DataStoreEventPublisher {
+public class EventPublishingDataStore<K, E> implements DataStore<K, E>, DataStoreEventPublisher {
 
     private static final Log log = LogFactory.getLog(EventPublishingDataStore.class);
     private final DataStore<K, E> delegate;

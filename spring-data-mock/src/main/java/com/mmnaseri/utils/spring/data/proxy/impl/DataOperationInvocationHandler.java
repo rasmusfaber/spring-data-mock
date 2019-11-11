@@ -1,5 +1,16 @@
 package com.mmnaseri.utils.spring.data.proxy.impl;
 
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArraySet;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import com.mmnaseri.utils.spring.data.domain.Invocation;
 import com.mmnaseri.utils.spring.data.domain.impl.ImmutableInvocation;
 import com.mmnaseri.utils.spring.data.proxy.InvocationMapping;
@@ -9,17 +20,6 @@ import com.mmnaseri.utils.spring.data.proxy.ResultConverter;
 import com.mmnaseri.utils.spring.data.proxy.impl.converters.DefaultResultConverter;
 import com.mmnaseri.utils.spring.data.store.DataStore;
 import com.mmnaseri.utils.spring.data.store.DataStoreOperation;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
-import java.io.Serializable;
-import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.Method;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.CopyOnWriteArraySet;
 
 /**
  * <p>This class is in charge of handling a data operation that was triggered by invoking a repository method.</p>
@@ -32,7 +32,7 @@ import java.util.concurrent.CopyOnWriteArraySet;
  * @since 1.0 (9/23/15)
  */
 @SuppressWarnings("WeakerAccess")
-public class DataOperationInvocationHandler<K extends Serializable, E> implements InvocationHandler {
+public class DataOperationInvocationHandler<K, E> implements InvocationHandler {
 
     private static final Log log = LogFactory.getLog(DataOperationInvocationHandler.class);
     private final DataStore<K, E> dataStore;

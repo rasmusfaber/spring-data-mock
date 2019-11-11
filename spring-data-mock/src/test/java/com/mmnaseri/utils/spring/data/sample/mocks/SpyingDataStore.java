@@ -14,7 +14,7 @@ import static org.hamcrest.Matchers.*;
  * @author Milad Naseri (mmnaseri@programmer.net)
  * @since 1.0 (4/10/16)
  */
-public class SpyingDataStore<K extends Serializable, E> implements QueueingDataStore<K, E, Object> {
+public class SpyingDataStore<K, E> implements QueueingDataStore<K, E, Object> {
 
     private final DataStore<K, E> delegate;
     private final List<OperationRequest> requests;

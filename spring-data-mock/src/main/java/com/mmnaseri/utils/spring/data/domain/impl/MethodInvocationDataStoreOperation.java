@@ -1,16 +1,16 @@
 package com.mmnaseri.utils.spring.data.domain.impl;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import com.mmnaseri.utils.spring.data.domain.Invocation;
 import com.mmnaseri.utils.spring.data.error.DataOperationExecutionException;
 import com.mmnaseri.utils.spring.data.proxy.RepositoryConfiguration;
 import com.mmnaseri.utils.spring.data.store.DataStore;
 import com.mmnaseri.utils.spring.data.store.DataStoreOperation;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
-import java.io.Serializable;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 
 /**
  * This is a data store operation that delivers the operation by calling to a delegate method. This means that the results
@@ -19,7 +19,7 @@ import java.lang.reflect.Method;
  * @author Milad Naseri (mmnaseri@programmer.net)
  * @since 1.0 (9/29/15)
  */
-public class MethodInvocationDataStoreOperation<K extends Serializable, E> implements DataStoreOperation<Object, K, E> {
+public class MethodInvocationDataStoreOperation<K, E> implements DataStoreOperation<Object, K, E> {
 
     private static final Log log = LogFactory.getLog(MethodInvocationDataStoreOperation.class);
     private final Object instance;

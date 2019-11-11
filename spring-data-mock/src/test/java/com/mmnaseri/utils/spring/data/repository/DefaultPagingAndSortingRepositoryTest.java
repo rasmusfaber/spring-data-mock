@@ -53,14 +53,14 @@ public class DefaultPagingAndSortingRepositoryTest {
     public void testFindAllWithSort() throws Exception {
         final List<?> found = repository.findAll(new Sort(new Sort.Order(Sort.Direction.ASC, "address.city"), new Sort.Order(Sort.Direction.DESC, "address.zip.area")));
         assertThat(found, hasSize(dataStore.retrieveAll().size()));
-        assertThat(found.get(0), Matchers.<Object>is(dataStore.retrieve("2")));
-        assertThat(found.get(1), Matchers.<Object>is(dataStore.retrieve("4")));
-        assertThat(found.get(2), Matchers.<Object>is(dataStore.retrieve("6")));
-        assertThat(found.get(3), Matchers.<Object>is(dataStore.retrieve("5")));
-        assertThat(found.get(4), Matchers.<Object>is(dataStore.retrieve("3")));
-        assertThat(found.get(5), Matchers.<Object>is(dataStore.retrieve("8")));
-        assertThat(found.get(6), Matchers.<Object>is(dataStore.retrieve("1")));
-        assertThat(found.get(7), Matchers.<Object>is(dataStore.retrieve("7")));
+        assertThat(found.get(0), Matchers.is(dataStore.retrieve("2")));
+        assertThat(found.get(1), Matchers.is(dataStore.retrieve("4")));
+        assertThat(found.get(2), Matchers.is(dataStore.retrieve("6")));
+        assertThat(found.get(3), Matchers.is(dataStore.retrieve("5")));
+        assertThat(found.get(4), Matchers.is(dataStore.retrieve("3")));
+        assertThat(found.get(5), Matchers.is(dataStore.retrieve("8")));
+        assertThat(found.get(6), Matchers.is(dataStore.retrieve("1")));
+        assertThat(found.get(7), Matchers.is(dataStore.retrieve("7")));
     }
 
     @Test
@@ -82,8 +82,8 @@ public class DefaultPagingAndSortingRepositoryTest {
         assertThat(page.getSize(), is(3));
         assertThat(page.getNumberOfElements(), is(2));
         final List<?> found = page.getContent();
-        assertThat(found.get(0), Matchers.<Object>is(dataStore.retrieve("1")));
-        assertThat(found.get(1), Matchers.<Object>is(dataStore.retrieve("7")));
+        assertThat(found.get(0), Matchers.is(dataStore.retrieve("1")));
+        assertThat(found.get(1), Matchers.is(dataStore.retrieve("7")));
     }
 
     @Test
@@ -91,15 +91,15 @@ public class DefaultPagingAndSortingRepositoryTest {
         dataStore.save("9", new Person().setId("9").setAddress(new Address().setZip(new Zip().setArea(null)).setCity("Spokane").setState(new State().setName("Washington").setAbbreviation("WA"))));
         final List<?> found = repository.findAll(new Sort(new Sort.Order(Sort.Direction.ASC, "address.city"), new Sort.Order(Sort.Direction.DESC, "address.zip.area", Sort.NullHandling.NULLS_FIRST)));
         assertThat(found, hasSize(dataStore.retrieveAll().size()));
-        assertThat(found.get(0), Matchers.<Object>is(dataStore.retrieve("2")));
-        assertThat(found.get(1), Matchers.<Object>is(dataStore.retrieve("4")));
-        assertThat(found.get(2), Matchers.<Object>is(dataStore.retrieve("6")));
-        assertThat(found.get(3), Matchers.<Object>is(dataStore.retrieve("5")));
-        assertThat(found.get(4), Matchers.<Object>is(dataStore.retrieve("3")));
-        assertThat(found.get(5), Matchers.<Object>is(dataStore.retrieve("8")));
-        assertThat(found.get(6), Matchers.<Object>is(dataStore.retrieve("1")));
-        assertThat(found.get(7), Matchers.<Object>is(dataStore.retrieve("7")));
-        assertThat(found.get(8), Matchers.<Object>is(dataStore.retrieve("9")));
+        assertThat(found.get(0), Matchers.is(dataStore.retrieve("2")));
+        assertThat(found.get(1), Matchers.is(dataStore.retrieve("4")));
+        assertThat(found.get(2), Matchers.is(dataStore.retrieve("6")));
+        assertThat(found.get(3), Matchers.is(dataStore.retrieve("5")));
+        assertThat(found.get(4), Matchers.is(dataStore.retrieve("3")));
+        assertThat(found.get(5), Matchers.is(dataStore.retrieve("8")));
+        assertThat(found.get(6), Matchers.is(dataStore.retrieve("1")));
+        assertThat(found.get(7), Matchers.is(dataStore.retrieve("7")));
+        assertThat(found.get(8), Matchers.is(dataStore.retrieve("9")));
     }
 
     @Test
@@ -107,15 +107,15 @@ public class DefaultPagingAndSortingRepositoryTest {
         dataStore.save("9", new Person().setId("9").setAddress(new Address().setZip(new Zip().setArea(null)).setCity("Spokane").setState(new State().setName("Washington").setAbbreviation("WA"))));
         final List<?> found = repository.findAll(new Sort(new Sort.Order(Sort.Direction.ASC, "address.city"), new Sort.Order(Sort.Direction.DESC, "address.zip.area", Sort.NullHandling.NULLS_LAST)));
         assertThat(found, hasSize(dataStore.retrieveAll().size()));
-        assertThat(found.get(0), Matchers.<Object>is(dataStore.retrieve("2")));
-        assertThat(found.get(1), Matchers.<Object>is(dataStore.retrieve("4")));
-        assertThat(found.get(2), Matchers.<Object>is(dataStore.retrieve("6")));
-        assertThat(found.get(3), Matchers.<Object>is(dataStore.retrieve("5")));
-        assertThat(found.get(4), Matchers.<Object>is(dataStore.retrieve("3")));
-        assertThat(found.get(5), Matchers.<Object>is(dataStore.retrieve("8")));
-        assertThat(found.get(6), Matchers.<Object>is(dataStore.retrieve("1")));
-        assertThat(found.get(7), Matchers.<Object>is(dataStore.retrieve("9")));
-        assertThat(found.get(8), Matchers.<Object>is(dataStore.retrieve("7")));
+        assertThat(found.get(0), Matchers.is(dataStore.retrieve("2")));
+        assertThat(found.get(1), Matchers.is(dataStore.retrieve("4")));
+        assertThat(found.get(2), Matchers.is(dataStore.retrieve("6")));
+        assertThat(found.get(3), Matchers.is(dataStore.retrieve("5")));
+        assertThat(found.get(4), Matchers.is(dataStore.retrieve("3")));
+        assertThat(found.get(5), Matchers.is(dataStore.retrieve("8")));
+        assertThat(found.get(6), Matchers.is(dataStore.retrieve("1")));
+        assertThat(found.get(7), Matchers.is(dataStore.retrieve("9")));
+        assertThat(found.get(8), Matchers.is(dataStore.retrieve("7")));
     }
 
 }

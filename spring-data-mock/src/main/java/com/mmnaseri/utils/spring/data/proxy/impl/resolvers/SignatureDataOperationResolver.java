@@ -1,17 +1,17 @@
 package com.mmnaseri.utils.spring.data.proxy.impl.resolvers;
 
+import java.lang.reflect.Method;
+import java.util.Arrays;
+import java.util.List;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import com.mmnaseri.utils.spring.data.domain.impl.MethodInvocationDataStoreOperation;
 import com.mmnaseri.utils.spring.data.proxy.DataOperationResolver;
 import com.mmnaseri.utils.spring.data.proxy.TypeMapping;
 import com.mmnaseri.utils.spring.data.store.DataStoreOperation;
 import com.mmnaseri.utils.spring.data.tools.PropertyUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
-import java.io.Serializable;
-import java.lang.reflect.Method;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * <p>This class will resolve methods to the equivalent methods of the mapped implementations.</p>
@@ -44,7 +44,7 @@ public class SignatureDataOperationResolver implements DataOperationResolver {
             if (declaration != null) {
                 log.info("Setting the resolution as a method invocation on the previously prepared type mapping");
                 final Object instance = mapping.getInstance();
-                return new MethodInvocationDataStoreOperation<Serializable, Object>(instance, declaration);
+                return new MethodInvocationDataStoreOperation<Object, Object>(instance, declaration);
             }
         }
         return null;

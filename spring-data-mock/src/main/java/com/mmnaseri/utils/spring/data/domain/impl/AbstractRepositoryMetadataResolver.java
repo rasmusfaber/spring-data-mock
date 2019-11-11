@@ -1,13 +1,12 @@
 package com.mmnaseri.utils.spring.data.domain.impl;
 
+import java.lang.reflect.Modifier;
+
 import com.mmnaseri.utils.spring.data.domain.IdPropertyResolver;
 import com.mmnaseri.utils.spring.data.domain.RepositoryMetadata;
 import com.mmnaseri.utils.spring.data.domain.RepositoryMetadataResolver;
 import com.mmnaseri.utils.spring.data.domain.impl.id.EntityIdPropertyResolver;
 import com.mmnaseri.utils.spring.data.error.RepositoryDefinitionException;
-
-import java.io.Serializable;
-import java.lang.reflect.Modifier;
 
 /**
  * <p>This class will first check for common errors in a repository's definition before letting the resolution
@@ -65,7 +64,7 @@ public abstract class AbstractRepositoryMetadataResolver implements RepositoryMe
      * @return the name of the ID property
      */
     @SuppressWarnings("WeakerAccess")
-    protected String resolveIdProperty(Class<?> entityType, Class<? extends Serializable> idType) {
+    protected String resolveIdProperty(Class<?> entityType, Class<?> idType) {
         return idPropertyResolver.resolve(entityType, idType);
     }
 

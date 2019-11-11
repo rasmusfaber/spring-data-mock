@@ -1,6 +1,20 @@
 package com.mmnaseri.utils.spring.data.repository;
 
-import com.mmnaseri.utils.spring.data.domain.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+
+import com.mmnaseri.utils.spring.data.domain.DataStoreAware;
+import com.mmnaseri.utils.spring.data.domain.Invocation;
+import com.mmnaseri.utils.spring.data.domain.Parameter;
+import com.mmnaseri.utils.spring.data.domain.RepositoryMetadata;
+import com.mmnaseri.utils.spring.data.domain.RepositoryMetadataAware;
 import com.mmnaseri.utils.spring.data.domain.impl.ImmutableInvocation;
 import com.mmnaseri.utils.spring.data.domain.impl.SelectDataStoreOperation;
 import com.mmnaseri.utils.spring.data.error.InvalidArgumentException;
@@ -11,12 +25,6 @@ import com.mmnaseri.utils.spring.data.proxy.RepositoryFactoryConfigurationAware;
 import com.mmnaseri.utils.spring.data.query.QueryDescriptor;
 import com.mmnaseri.utils.spring.data.store.DataStore;
 import com.mmnaseri.utils.spring.data.tools.PropertyUtils;
-import org.springframework.data.domain.*;
-
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
 /**
  * @author Milad Naseri (milad.naseri@cdk.com)
@@ -24,7 +32,7 @@ import java.util.List;
  */
 public class DefaultQueryByExampleExecutor implements DataStoreAware, RepositoryConfigurationAware, RepositoryMetadataAware, RepositoryFactoryConfigurationAware {
 
-    private DataStore<Serializable, Object> dataStore;
+    private DataStore<Object, Object> dataStore;
     private final ExampleMatcherQueryDescriptionExtractor queryDescriptionExtractor;
     private RepositoryConfiguration repositoryConfiguration;
     private RepositoryMetadata repositoryMetadata;
@@ -93,7 +101,7 @@ public class DefaultQueryByExampleExecutor implements DataStoreAware, Repository
     private Collection<?> retrieveAll(Example example) {
         final QueryDescriptor descriptor = queryDescriptionExtractor.extract(repositoryMetadata, configuration, example);
         final Invocation invocation = createInvocation(descriptor, example);
-        final SelectDataStoreOperation<Serializable, Object> select = new SelectDataStoreOperation<>(descriptor);
+        final SelectDataStoreOperation<Object, Object> select = new SelectDataStoreOperation<>(descriptor);
         return select.execute(dataStore, repositoryConfiguration, invocation);
     }
 

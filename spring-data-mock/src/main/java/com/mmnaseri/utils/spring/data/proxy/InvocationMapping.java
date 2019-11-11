@@ -1,9 +1,8 @@
 package com.mmnaseri.utils.spring.data.proxy;
 
-import com.mmnaseri.utils.spring.data.store.DataStoreOperation;
-
-import java.io.Serializable;
 import java.lang.reflect.Method;
+
+import com.mmnaseri.utils.spring.data.store.DataStoreOperation;
 
 /**
  * <p>This interface is used to represent data about a single invocation mapping, consisting of the method and
@@ -12,7 +11,7 @@ import java.lang.reflect.Method;
  * @author Milad Naseri (mmnaseri@programmer.net)
  * @since 1.0 (9/29/15)
  */
-public interface InvocationMapping<K extends Serializable, E> {
+public interface InvocationMapping<K, E> {
 
     /**
      * @return the method

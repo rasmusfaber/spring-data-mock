@@ -171,7 +171,7 @@ public class RepositoryMockBuilderTest {
 
     @Test
     public void testNoOpKeyGeneration() throws Exception {
-        final NoOpKeyGenerator<Serializable> generator = new NoOpKeyGenerator<>();
+        final NoOpKeyGenerator<Object> generator = new NoOpKeyGenerator<>();
         assertThat(generator.generate(), is(nullValue()));
     }
 
@@ -235,7 +235,7 @@ public class RepositoryMockBuilderTest {
 
     }
 
-    public static class InaccessibleKeyGenerator implements KeyGenerator<Serializable> {
+    public static class InaccessibleKeyGenerator implements KeyGenerator<Object> {
 
         private InaccessibleKeyGenerator() {
         }

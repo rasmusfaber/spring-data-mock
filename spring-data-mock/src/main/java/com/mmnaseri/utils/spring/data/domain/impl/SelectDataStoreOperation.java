@@ -1,5 +1,15 @@
 package com.mmnaseri.utils.spring.data.domain.impl;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import com.mmnaseri.utils.spring.data.domain.Invocation;
 import com.mmnaseri.utils.spring.data.proxy.RepositoryConfiguration;
 import com.mmnaseri.utils.spring.data.query.Page;
@@ -7,11 +17,6 @@ import com.mmnaseri.utils.spring.data.query.QueryDescriptor;
 import com.mmnaseri.utils.spring.data.query.Sort;
 import com.mmnaseri.utils.spring.data.store.DataStore;
 import com.mmnaseri.utils.spring.data.store.DataStoreOperation;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
-import java.io.Serializable;
-import java.util.*;
 
 /**
  * This is a data store operation that will read values from the underlying data store and match them up against the
@@ -21,7 +26,7 @@ import java.util.*;
  * @author Milad Naseri (mmnaseri@programmer.net)
  * @since 1.0 (9/17/15)
  */
-public class SelectDataStoreOperation<K extends Serializable, E> implements DataStoreOperation<List<E>, K, E> {
+public class SelectDataStoreOperation<K, E> implements DataStoreOperation<List<E>, K, E> {
 
     private static final Log log = LogFactory.getLog(SelectDataStoreOperation.class);
     private final QueryDescriptor descriptor;

@@ -11,7 +11,7 @@ import java.io.Serializable;
  * @author Milad Naseri (mmnaseri@programmer.net)
  * @since 1.0 (4/12/16, 6:50 PM)
  */
-public class StringifiableDataStoreOperation<R, K extends Serializable, E> implements DataStoreOperation<R, K, E> {
+public class StringifiableDataStoreOperation<R, K, E> implements DataStoreOperation<R, K, E> {
 
     private final String string;
 

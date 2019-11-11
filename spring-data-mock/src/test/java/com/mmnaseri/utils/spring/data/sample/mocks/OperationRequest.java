@@ -6,7 +6,7 @@ import java.io.Serializable;
  * @author Milad Naseri (mmnaseri@programmer.net)
  * @since 1.0 (4/10/16)
  */
-public class OperationRequest<K extends Serializable, E> {
+public class OperationRequest<K, E> {
 
     private final Long timestamp;
     private final Operation operation;

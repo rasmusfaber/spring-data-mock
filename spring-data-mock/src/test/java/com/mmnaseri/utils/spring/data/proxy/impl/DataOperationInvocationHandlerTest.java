@@ -46,7 +46,7 @@ public class DataOperationInvocationHandlerTest {
         final Object proxy = new Object();
         final Object result = handler.invoke(proxy, Object.class.getMethod("hashCode"), new Object[]{});
         assertThat(result, is(notNullValue()));
-        assertThat(result, Matchers.<Object>is(proxy.hashCode()));
+        assertThat(result, Matchers.is(proxy.hashCode()));
     }
 
     /**
@@ -58,7 +58,7 @@ public class DataOperationInvocationHandlerTest {
         final Object proxy = new Object();
         final Object result = handler.invoke(proxy, Object.class.getMethod("equals", Object.class), new Object[]{proxy});
         assertThat(result, is(notNullValue()));
-        assertThat(result, Matchers.<Object>is(true));
+        assertThat(result, Matchers.is(true));
     }
 
     /**
@@ -70,7 +70,7 @@ public class DataOperationInvocationHandlerTest {
         final Object proxy = new Object();
         final Object result = handler.invoke(proxy, Object.class.getMethod("equals", Object.class), new Object[]{new Object()});
         assertThat(result, is(notNullValue()));
-        assertThat(result, Matchers.<Object>is(false));
+        assertThat(result, Matchers.is(false));
     }
 
     /**
@@ -82,7 +82,7 @@ public class DataOperationInvocationHandlerTest {
         final Object proxy = new Object();
         final Object result = handler.invoke(proxy, Object.class.getMethod("toString"), new Object[]{});
         assertThat(result, is(notNullValue()));
-        assertThat(result, Matchers.<Object>is(proxy.toString()));
+        assertThat(result, Matchers.is(proxy.toString()));
     }
 
     @Test

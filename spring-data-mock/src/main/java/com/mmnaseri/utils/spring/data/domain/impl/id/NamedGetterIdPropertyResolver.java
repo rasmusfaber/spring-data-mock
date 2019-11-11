@@ -1,15 +1,15 @@
 package com.mmnaseri.utils.spring.data.domain.impl.id;
 
-import com.mmnaseri.utils.spring.data.domain.IdPropertyResolver;
-import com.mmnaseri.utils.spring.data.tools.GetterMethodFilter;
-import com.mmnaseri.utils.spring.data.tools.PropertyUtils;
-import org.springframework.util.ReflectionUtils;
+import static com.mmnaseri.utils.spring.data.domain.impl.id.IdPropertyResolverUtils.*;
 
-import java.io.Serializable;
 import java.lang.reflect.Method;
 import java.util.concurrent.atomic.AtomicReference;
 
-import static com.mmnaseri.utils.spring.data.domain.impl.id.IdPropertyResolverUtils.getPropertyNameFromAnnotatedMethod;
+import org.springframework.util.ReflectionUtils;
+
+import com.mmnaseri.utils.spring.data.domain.IdPropertyResolver;
+import com.mmnaseri.utils.spring.data.tools.GetterMethodFilter;
+import com.mmnaseri.utils.spring.data.tools.PropertyUtils;
 
 /**
  * This class is for resolving an ID based on the getter. It will try to find a getter for a property named
@@ -22,7 +22,7 @@ import static com.mmnaseri.utils.spring.data.domain.impl.id.IdPropertyResolverUt
 public class NamedGetterIdPropertyResolver implements IdPropertyResolver {
 
     @Override
-    public String resolve(Class<?> entityType, final Class<? extends Serializable> idType) {
+    public String resolve(Class<?> entityType, final Class<?> idType) {
         final AtomicReference<Method> found = new AtomicReference<>();
         ReflectionUtils.doWithMethods(entityType, new ReflectionUtils.MethodCallback() {
             @Override

@@ -1,11 +1,14 @@
 package com.mmnaseri.utils.spring.data.store.impl;
 
+import java.time.Instant;
+import java.util.Optional;
+
+import org.springframework.data.domain.Auditable;
+import org.springframework.data.domain.AuditorAware;
+
 import com.mmnaseri.utils.spring.data.domain.RepositoryMetadata;
 import com.mmnaseri.utils.spring.data.store.DataStoreEvent;
 import com.mmnaseri.utils.spring.data.store.DataStoreEventListener;
-import org.joda.time.DateTime;
-import org.springframework.data.domain.Auditable;
-import org.springframework.data.domain.AuditorAware;
 
 /**
  * This event listener can be registered with an {@link com.mmnaseri.utils.spring.data.store.DataStoreEventListenerContext
@@ -29,13 +32,13 @@ public class AuditDataEventListener implements DataStoreEventListener<DataStoreE
         if (event instanceof BeforeInsertDataStoreEvent) {
             final Object entity = ((BeforeInsertDataStoreEvent) event).getEntity();
             final Auditable wrapper = getAuditable(entity, event.getRepositoryMetadata());
-            wrapper.setCreatedBy(auditorAware == null ? null : auditorAware.getCurrentAuditor());
-            wrapper.setCreatedDate(DateTime.now());
+            wrapper.setCreatedBy(auditorAware == null ? null : auditorAware.getCurrentAuditor().orElse(null));
+            wrapper.setCreatedDate(Instant.now());
         } else if (event instanceof BeforeUpdateDataStoreEvent) {
             final Object entity = ((BeforeUpdateDataStoreEvent) event).getEntity();
             final Auditable wrapper = getAuditable(entity, event.getRepositoryMetadata());
-            wrapper.setLastModifiedBy(auditorAware == null ? null : auditorAware.getCurrentAuditor());
-            wrapper.setLastModifiedDate(DateTime.now());
+            wrapper.setLastModifiedBy(auditorAware == null ? null : auditorAware.getCurrentAuditor().orElse(null));
+            wrapper.setLastModifiedDate(Instant.now());
         }
     }
 

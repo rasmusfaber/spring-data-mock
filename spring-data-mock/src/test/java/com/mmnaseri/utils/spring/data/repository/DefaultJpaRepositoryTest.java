@@ -50,7 +50,7 @@ public class DefaultJpaRepositoryTest {
         final DefaultJpaRepository repository = new DefaultJpaRepository();
         repository.setKeyGenerator(new UUIDKeyGenerator());
         repository.setRepositoryMetadata(repositoryMetadata);
-        final SpyingDataStore<Serializable, Object> dataStore = new SpyingDataStore<>(null, new AtomicLong());
+        final SpyingDataStore<Object, Object> dataStore = new SpyingDataStore<>(null, new AtomicLong());
         repository.setDataStore(dataStore);
         repository.flush();
         assertThat(dataStore.getRequests(), hasSize(1));
@@ -123,7 +123,7 @@ public class DefaultJpaRepositoryTest {
         assertThat(repository.getOne(key), is(nullValue()));
         final Person person = new Person();
         dataStore.save("1234", person);
-        assertThat(repository.getOne(key), Matchers.<Object>is(person));
+        assertThat(repository.getOne(key), Matchers.is(person));
     }
 
     @Test

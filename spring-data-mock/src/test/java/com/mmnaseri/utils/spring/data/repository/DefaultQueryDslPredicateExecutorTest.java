@@ -27,7 +27,7 @@ import static org.hamcrest.Matchers.*;
  */
 public class DefaultQueryDslPredicateExecutorTest {
 
-    private MemoryDataStore<Serializable, Person> dataStore;
+    private MemoryDataStore<Object, Person> dataStore;
     private DefaultQueryDslPredicateExecutor executor;
 
     @BeforeMethod
@@ -46,7 +46,7 @@ public class DefaultQueryDslPredicateExecutorTest {
         final BooleanExpression predicate = $(person.getId()).eq("1");
         final Object one = executor.findOne(predicate);
         assertThat(one, is(notNullValue()));
-        assertThat(one, Matchers.<Object>is(saved));
+        assertThat(one, Matchers.is(saved));
     }
 
     @Test
@@ -101,9 +101,9 @@ public class DefaultQueryDslPredicateExecutorTest {
         assertThat(result, is(notNullValue()));
         final List<?> list = TestUtils.iterableToList(result);
         assertThat(list, hasSize(3));
-        assertThat(list.get(0), Matchers.<Object>is(dataStore.retrieve("3")));
-        assertThat(list.get(1), Matchers.<Object>is(dataStore.retrieve("2")));
-        assertThat(list.get(2), Matchers.<Object>is(dataStore.retrieve("1")));
+        assertThat(list.get(0), Matchers.is(dataStore.retrieve("3")));
+        assertThat(list.get(1), Matchers.is(dataStore.retrieve("2")));
+        assertThat(list.get(2), Matchers.is(dataStore.retrieve("1")));
     }
 
     @Test
@@ -118,8 +118,8 @@ public class DefaultQueryDslPredicateExecutorTest {
         assertThat(result, is(notNullValue()));
         final List<?> list = TestUtils.iterableToList(result);
         assertThat(list, hasSize(2));
-        assertThat(list.get(0), Matchers.<Object>is(dataStore.retrieve("3")));
-        assertThat(list.get(1), Matchers.<Object>is(dataStore.retrieve("2")));
+        assertThat(list.get(0), Matchers.is(dataStore.retrieve("3")));
+        assertThat(list.get(1), Matchers.is(dataStore.retrieve("2")));
     }
 
     @Test
@@ -179,11 +179,11 @@ public class DefaultQueryDslPredicateExecutorTest {
         assertThat(all, is(notNullValue()));
         final List<?> list = TestUtils.iterableToList(all);
         assertThat(list, hasSize(5));
-        assertThat(list.get(0), Matchers.<Object>is(dataStore.retrieve("5")));
-        assertThat(list.get(1), Matchers.<Object>is(dataStore.retrieve("4")));
-        assertThat(list.get(2), Matchers.<Object>is(dataStore.retrieve("3")));
-        assertThat(list.get(3), Matchers.<Object>is(dataStore.retrieve("2")));
-        assertThat(list.get(4), Matchers.<Object>is(dataStore.retrieve("1")));
+        assertThat(list.get(0), Matchers.is(dataStore.retrieve("5")));
+        assertThat(list.get(1), Matchers.is(dataStore.retrieve("4")));
+        assertThat(list.get(2), Matchers.is(dataStore.retrieve("3")));
+        assertThat(list.get(3), Matchers.is(dataStore.retrieve("2")));
+        assertThat(list.get(4), Matchers.is(dataStore.retrieve("1")));
     }
 
     @Test
@@ -198,8 +198,8 @@ public class DefaultQueryDslPredicateExecutorTest {
         assertThat(all, is(notNullValue()));
         final List<?> list = TestUtils.iterableToList(all);
         assertThat(list, hasSize(2));
-        assertThat(list.get(0), Matchers.<Object>is(dataStore.retrieve("2")));
-        assertThat(list.get(1), Matchers.<Object>is(dataStore.retrieve("1")));
+        assertThat(list.get(0), Matchers.is(dataStore.retrieve("2")));
+        assertThat(list.get(1), Matchers.is(dataStore.retrieve("1")));
     }
 
 }

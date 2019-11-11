@@ -1,5 +1,7 @@
 package com.mmnaseri.utils.spring.data.sample.usecases.store;
 
+import java.util.Optional;
+
 import org.springframework.data.domain.AuditorAware;
 
 /**
@@ -11,8 +13,8 @@ public class SampleAuditorAware implements AuditorAware<String> {
     public static final String AUDITOR = "AUDITOR";
 
     @Override
-    public String getCurrentAuditor() {
-        return AUDITOR;
+    public Optional<String> getCurrentAuditor() {
+        return Optional.of(AUDITOR);
     }
 
 }

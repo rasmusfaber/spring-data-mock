@@ -4,6 +4,7 @@ import com.mmnaseri.utils.spring.data.domain.impl.ImmutableInvocation;
 import com.mmnaseri.utils.spring.data.proxy.ResultAdapter;
 import com.mmnaseri.utils.spring.data.sample.usecases.proxy.ReturnTypeSampleRepository;
 import org.springframework.data.domain.Slice;
+import org.springframework.data.domain.Sort;
 import org.testng.annotations.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -31,7 +32,7 @@ public class NullToSliceResultAdapterTest {
         assertThat(value.getNumber(), is(0));
         assertThat(value.getNumberOfElements(), is(0));
         assertThat(value.getSize(), is(0));
-        assertThat(value.getSort(), is(nullValue()));
+        assertThat(value.getSort(), is(Sort.unsorted()));
         assertThat(value.getContent(), hasSize(0));
     }
 
@@ -43,7 +44,7 @@ public class NullToSliceResultAdapterTest {
         assertThat(value.getNumber(), is(0));
         assertThat(value.getNumberOfElements(), is(0));
         assertThat(value.getSize(), is(0));
-        assertThat(value.getSort(), is(nullValue()));
+        assertThat(value.getSort(), is(Sort.unsorted()));
         assertThat(value.getContent(), hasSize(0));
     }
 
@@ -55,7 +56,7 @@ public class NullToSliceResultAdapterTest {
         assertThat(value.getNumber(), is(0));
         assertThat(value.getNumberOfElements(), is(0));
         assertThat(value.getSize(), is(0));
-        assertThat(value.getSort(), is(nullValue()));
+        assertThat(value.getSort(), is(Sort.unsorted()));
         assertThat(value.getContent(), hasSize(0));
     }
 

@@ -57,6 +57,8 @@ public class DefaultResultAdapterContext implements ResultAdapterContext {
             adapters.add(new GeoPageIterableResultAdapter());
             adapters.add(new FutureIterableResultAdapter());
             adapters.add(new ListenableFutureIterableResultAdapter());
+            adapters.add(new OptionalIterableResultAdapter());
+            adapters.add(new StreamIterableResultAdapter());
             Collections.sort(adapters);
         }
     }

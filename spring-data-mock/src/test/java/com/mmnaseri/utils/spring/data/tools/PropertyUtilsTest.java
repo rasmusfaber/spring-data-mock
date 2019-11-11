@@ -133,10 +133,10 @@ public class PropertyUtilsTest extends AbstractUtilityClassTest {
         person.getAddress().setState(new State());
         person.getAddress().getState().setName("Teheran");
         person.getAddress().getState().setAbbreviation("TEH");
-        assertThat(PropertyUtils.getPropertyValue(person, "address"), Matchers.<Object>is(person.getAddress()));
-        assertThat(PropertyUtils.getPropertyValue(person, "address.city"), Matchers.<Object>is(person.getAddress().getCity()));
-        assertThat(PropertyUtils.getPropertyValue(person, "address.state.name"), Matchers.<Object>is(person.getAddress().getState().getName()));
-        assertThat(PropertyUtils.getPropertyValue(person, "address.state.abbreviation"), Matchers.<Object>is(person.getAddress().getState().getAbbreviation()));
+        assertThat(PropertyUtils.getPropertyValue(person, "address"), Matchers.is(person.getAddress()));
+        assertThat(PropertyUtils.getPropertyValue(person, "address.city"), Matchers.is(person.getAddress().getCity()));
+        assertThat(PropertyUtils.getPropertyValue(person, "address.state.name"), Matchers.is(person.getAddress().getState().getName()));
+        assertThat(PropertyUtils.getPropertyValue(person, "address.state.abbreviation"), Matchers.is(person.getAddress().getState().getAbbreviation()));
         assertThat(PropertyUtils.getPropertyValue(person, "firstName"), is(nullValue()));
     }
 
@@ -199,7 +199,7 @@ public class PropertyUtilsTest extends AbstractUtilityClassTest {
         id.setAccessible(true);
         final String value = "12345";
         PropertyUtils.setPropertyValue(object, "id", value);
-        assertThat(id.get(object), Matchers.<Object>is(value));
+        assertThat(id.get(object), Matchers.is(value));
     }
 
     @Test(expectedExceptions = IllegalStateException.class)
@@ -222,7 +222,7 @@ public class PropertyUtilsTest extends AbstractUtilityClassTest {
         final Person person = new Person();
         final String value = "123";
         final Object changed = PropertyUtils.setPropertyValue(person, "id", value);
-        assertThat(changed, Matchers.<Object>is(person));
+        assertThat(changed, Matchers.is(person));
         assertThat(person.getId(), is(value));
     }
 
@@ -231,7 +231,7 @@ public class PropertyUtilsTest extends AbstractUtilityClassTest {
         final Person person = new Person().setAddress(new Address().setZip(new Zip()));
         final String value = "Capital";
         final Object changed = PropertyUtils.setPropertyValue(person, "address.zip.area", value);
-        assertThat(changed, Matchers.<Object>is(person.getAddress().getZip()));
+        assertThat(changed, Matchers.is(person.getAddress().getZip()));
         assertThat(person.getAddress().getZip().getArea(), is(value));
     }
 

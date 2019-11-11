@@ -41,10 +41,8 @@ public class DefaultCrudRepositoryWithSerializedTest {
         assertThat(dataStore.hasKey("1"), is(true));
         final PersonSerializable personToDelete = new PersonSerializable();
         personToDelete.setId("1");
-        final Object deleted = repository.delete(personToDelete);
+        repository.delete(personToDelete);
         assertThat(dataStore.hasKey("1"), is(false));
-        assertThat(deleted, is(notNullValue()));
-        assertThat(deleted, Matchers.<Object>is(original));
     }
 
 

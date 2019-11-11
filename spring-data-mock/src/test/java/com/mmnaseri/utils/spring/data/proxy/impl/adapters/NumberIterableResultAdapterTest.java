@@ -34,12 +34,12 @@ public class NumberIterableResultAdapterTest {
     public void testAdapting() throws Exception {
         final NumberIterableResultAdapter adapter = new NumberIterableResultAdapter();
         Long value = 100L;
-        assertThat(adapter.adapt(new ImmutableInvocation(ReturnTypeSampleRepository.class.getMethod("findInt"), new Object[]{}), Collections.singleton(value)), Matchers.<Object>is(value.intValue()));
-        assertThat(adapter.adapt(new ImmutableInvocation(ReturnTypeSampleRepository.class.getMethod("findLong"), new Object[]{}), Collections.singleton(value)), Matchers.<Object>is(value));
-        assertThat(adapter.adapt(new ImmutableInvocation(ReturnTypeSampleRepository.class.getMethod("findShort"), new Object[]{}), Collections.singleton(value)), Matchers.<Object>is(value.shortValue()));
-        assertThat(adapter.adapt(new ImmutableInvocation(ReturnTypeSampleRepository.class.getMethod("findDouble"), new Object[]{}), Collections.singleton(value)), Matchers.<Object>is(value.doubleValue()));
-        assertThat(adapter.adapt(new ImmutableInvocation(ReturnTypeSampleRepository.class.getMethod("findFloat"), new Object[]{}), Collections.singleton(value)), Matchers.<Object>is(value.floatValue()));
-        assertThat(adapter.adapt(new ImmutableInvocation(ReturnTypeSampleRepository.class.getMethod("findByte"), new Object[]{}), Collections.singleton(value)), Matchers.<Object>is(value.byteValue()));
+        assertThat(adapter.adapt(new ImmutableInvocation(ReturnTypeSampleRepository.class.getMethod("findInt"), new Object[]{}), Collections.singleton(value)), Matchers.is(value.intValue()));
+        assertThat(adapter.adapt(new ImmutableInvocation(ReturnTypeSampleRepository.class.getMethod("findLong"), new Object[]{}), Collections.singleton(value)), Matchers.is(value));
+        assertThat(adapter.adapt(new ImmutableInvocation(ReturnTypeSampleRepository.class.getMethod("findShort"), new Object[]{}), Collections.singleton(value)), Matchers.is(value.shortValue()));
+        assertThat(adapter.adapt(new ImmutableInvocation(ReturnTypeSampleRepository.class.getMethod("findDouble"), new Object[]{}), Collections.singleton(value)), Matchers.is(value.doubleValue()));
+        assertThat(adapter.adapt(new ImmutableInvocation(ReturnTypeSampleRepository.class.getMethod("findFloat"), new Object[]{}), Collections.singleton(value)), Matchers.is(value.floatValue()));
+        assertThat(adapter.adapt(new ImmutableInvocation(ReturnTypeSampleRepository.class.getMethod("findByte"), new Object[]{}), Collections.singleton(value)), Matchers.is(value.byteValue()));
     }
 
     @Test(expectedExceptions = ResultAdapterFailureException.class)

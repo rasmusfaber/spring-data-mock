@@ -1,17 +1,16 @@
 package com.mmnaseri.utils.spring.data.domain.impl.id;
 
-import com.mmnaseri.utils.spring.data.domain.IdPropertyResolver;
-import com.mmnaseri.utils.spring.data.error.MultipleIdPropertiesException;
-import com.mmnaseri.utils.spring.data.tools.GetterMethodFilter;
-import org.springframework.data.annotation.Id;
-import org.springframework.util.ReflectionUtils;
+import static com.mmnaseri.utils.spring.data.domain.impl.id.IdPropertyResolverUtils.*;
 
-import java.io.Serializable;
 import java.lang.reflect.Method;
 import java.util.concurrent.atomic.AtomicReference;
 
-import static com.mmnaseri.utils.spring.data.domain.impl.id.IdPropertyResolverUtils.getPropertyNameFromAnnotatedMethod;
-import static com.mmnaseri.utils.spring.data.domain.impl.id.IdPropertyResolverUtils.isAnnotated;
+import org.springframework.data.annotation.Id;
+import org.springframework.util.ReflectionUtils;
+
+import com.mmnaseri.utils.spring.data.domain.IdPropertyResolver;
+import com.mmnaseri.utils.spring.data.error.MultipleIdPropertiesException;
+import com.mmnaseri.utils.spring.data.tools.GetterMethodFilter;
 
 /**
  * This class will resolve ID property name from a getter method that is annotated with
@@ -24,7 +23,7 @@ import static com.mmnaseri.utils.spring.data.domain.impl.id.IdPropertyResolverUt
 public class AnnotatedGetterIdPropertyResolver implements IdPropertyResolver {
 
     @Override
-    public String resolve(final Class<?> entityType, Class<? extends Serializable> idType) {
+    public String resolve(final Class<?> entityType, Class<?> idType) {
         final AtomicReference<Method> found = new AtomicReference<>();
         ReflectionUtils.doWithMethods(entityType, new ReflectionUtils.MethodCallback() {
             @Override

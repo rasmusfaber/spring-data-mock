@@ -118,8 +118,8 @@ public class EventPublishingDataStoreTest {
         assertThat(delegateSpy.getRequests(), hasSize(2));
         final OperationRequest save = delegateSpy.getRequests().get(1);
         assertThat(save.getOperation(), is(Operation.SAVE));
-        assertThat(save.getKey(), Matchers.<Serializable>is(key));
-        assertThat(save.getEntity(), Matchers.<Object>is(entity));
+        assertThat(save.getKey(), Matchers.is(key));
+        assertThat(save.getEntity(), Matchers.is(entity));
         final EventTrigger before = listenerContext.getEvents().get(0);
         final EventTrigger after = listenerContext.getEvents().get(1);
         assertThat(before.getTimestamp(), is(lessThan(save.getTimestamp())));
@@ -142,8 +142,8 @@ public class EventPublishingDataStoreTest {
         assertThat(delegateSpy.getRequests(), hasSize(2));
         final OperationRequest request = delegateSpy.getRequests().get(1);
         assertThat(request.getOperation(), is(Operation.SAVE));
-        assertThat(request.getKey(), Matchers.<Serializable>is(key));
-        assertThat(request.getEntity(), Matchers.<Object>is(entity));
+        assertThat(request.getKey(), Matchers.is(key));
+        assertThat(request.getEntity(), Matchers.is(entity));
         final EventTrigger before = listenerContext.getEvents().get(0);
         final EventTrigger after = listenerContext.getEvents().get(1);
         assertThat(before.getTimestamp(), is(lessThan(request.getTimestamp())));
@@ -173,7 +173,7 @@ public class EventPublishingDataStoreTest {
         assertThat(delegateSpy.getRequests(), hasSize(3));
         final OperationRequest request = delegateSpy.getRequests().get(2);
         assertThat(request.getOperation(), is(Operation.DELETE));
-        assertThat(request.getKey(), Matchers.<Serializable>is(key));
+        assertThat(request.getKey(), Matchers.is(key));
         assertThat(request.getEntity(), is(nullValue()));
         final EventTrigger before = listenerContext.getEvents().get(0);
         final EventTrigger after = listenerContext.getEvents().get(1);

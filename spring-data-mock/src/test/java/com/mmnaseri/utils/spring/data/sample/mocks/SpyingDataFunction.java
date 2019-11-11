@@ -23,7 +23,7 @@ public class SpyingDataFunction<R> implements DataFunction<R> {
     }
 
     @Override
-    public <K extends Serializable, E> R apply(DataStore<K, E> dataStore, QueryDescriptor query, RepositoryConfiguration configuration, List<E> selection) {
+    public <K, E> R apply(DataStore<K, E> dataStore, QueryDescriptor query, RepositoryConfiguration configuration, List<E> selection) {
         invocations.add(new DataFunctionInvocation<>(dataStore, query, configuration, selection));
         if (delegate != null) {
             return delegate.apply(dataStore, query, configuration, selection);

@@ -36,7 +36,7 @@ public class DescribedDataStoreOperationTest {
         assertThat(operationSpy.isCalled(), is(false));
         final Object result = operation.execute(new MemoryDataStore<>(Object.class), null, null);
         assertThat(operationSpy.isCalled(), is(true));
-        assertThat(result, Matchers.<Object>is(selection));
+        assertThat(result, Matchers.is(selection));
     }
 
     @Test
@@ -47,7 +47,7 @@ public class DescribedDataStoreOperationTest {
         final DefaultDataFunctionRegistry functionRegistry = new DefaultDataFunctionRegistry();
         final SpyingDataFunction<Object> spy = new SpyingDataFunction<>(new DataFunction<Object>() {
             @Override
-            public <K extends Serializable, E> Object apply(DataStore<K, E> dataStore, QueryDescriptor query, RepositoryConfiguration configuration, List<E> current) {
+            public <K, E> Object apply(DataStore<K, E> dataStore, QueryDescriptor query, RepositoryConfiguration configuration, List<E> current) {
                 return transformed;
             }
         });
@@ -60,7 +60,7 @@ public class DescribedDataStoreOperationTest {
         assertThat(operationSpy.isCalled(), is(true));
         assertThat(result, is(transformed));
         assertThat(spy.getInvocations(), hasSize(1));
-        assertThat(spy.getInvocations().get(0).getSelection(), Matchers.<Object>is(selection));
+        assertThat(spy.getInvocations().get(0).getSelection(), Matchers.is(selection));
     }
 
     @Test

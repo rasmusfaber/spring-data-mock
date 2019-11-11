@@ -67,7 +67,7 @@ public class DefaultCrudRepositoryTest {
         assertThat(repository.findOne(key), is(nullValue()));
         final Person person = new Person();
         dataStore.save("1234", person);
-        assertThat(repository.findOne(key), Matchers.<Object>is(person));
+        assertThat(repository.findOne(key), Matchers.is(person));
     }
 
     @Test
@@ -103,7 +103,7 @@ public class DefaultCrudRepositoryTest {
 
     @Test
     public void testDeleteByKey() throws Exception {
-        final Object deleted = repository.delete("1");
+        final Object deleted = repository.deleteById("1");
         assertThat(deleted, is(nullValue()));
     }
 
@@ -112,10 +112,8 @@ public class DefaultCrudRepositoryTest {
         final Person original = new Person();
         dataStore.save("1", original);
         assertThat(dataStore.hasKey("1"), is(true));
-        final Object deleted = repository.delete(new Person().setId("1"));
+        repository.delete(new Person().setId("1"));
         assertThat(dataStore.hasKey("1"), is(false));
-        assertThat(deleted, is(notNullValue()));
-        assertThat(deleted, Matchers.<Object>is(original));
     }
 
     @Test(expectedExceptions = EntityMissingKeyException.class)
@@ -145,12 +143,7 @@ public class DefaultCrudRepositoryTest {
         for (String existingId : existingIds) {
             assertThat(dataStore.hasKey(existingId), is(true));
         }
-        final List<?> deleted = iterableToList(repository.delete(request));
-        assertThat(deleted, hasSize(existingIds.size()));
-        for (Object item : deleted) {
-            assertThat(item, is(instanceOf(Person.class)));
-            assertThat((Person) item, isIn(expected));
-        }
+        repository.delete(request);
     }
 
     @Test

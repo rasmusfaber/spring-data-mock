@@ -29,7 +29,7 @@ public class DefaultTypeMappingContext implements TypeMappingContext {
     private static final Log log = LogFactory.getLog(DefaultTypeMappingContext.class);
     private static final String GEMFIRE_SUPPORT_CLASS = "org.springframework.data.gemfire.repository.GemfireRepository";
     private static final String JPA_SUPPORT_CLASS = "org.springframework.data.jpa.repository.JpaRepository";
-    private static final String QUERYDSL_SUPPORT_CLASS = "org.springframework.data.querydsl.QueryDslPredicateExecutor";
+    private static final String QUERYDSL_SUPPORT_CLASS = "org.springframework.data.querydsl.QuerydslPredicateExecutor";
     private static final String QUERY_BY_EXAMPLE_SUPPORT_CLASS = "org.springframework.data.repository.query.QueryByExampleExecutor";
     private static final String CGLIB_SUPPORT_CLASS = "net.sf.cglib.proxy.Callback";
     private final TypeMappingContext parent;

@@ -39,8 +39,8 @@ public class PageableSortParameterExtractorTest {
     @Test
     public void testPassingPageableWithNullSort() throws Exception {
         final PageableSortParameterExtractor extractor = new PageableSortParameterExtractor(0);
-        final Sort extracted = extractor.extract(new ImmutableInvocation(null, new Object[]{new PageRequest(0, 1)}));
-        assertThat(extracted, is(nullValue()));
+        final Sort extracted = extractor.extract(new ImmutableInvocation(null, new Object[]{PageRequest.of(0, 1)}));
+        assertThat(extracted.getOrders(), hasSize(0));
     }
 
     @Test

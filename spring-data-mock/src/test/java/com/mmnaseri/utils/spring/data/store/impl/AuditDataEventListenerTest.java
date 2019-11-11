@@ -9,6 +9,7 @@ import org.testng.annotations.Test;
 
 import java.util.Date;
 
+import static com.github.npathai.hamcrestopt.OptionalMatchers.*;
 import static com.mmnaseri.utils.spring.data.sample.usecases.store.SampleAuditorAware.AUDITOR;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
@@ -61,13 +62,13 @@ public class AuditDataEventListenerTest {
         final Date before = new Date();
         listener.onEvent(new BeforeInsertDataStoreEvent(repositoryMetadata, null, entity));
         final Date after = new Date();
-        assertThat(entity.getCreatedBy(), is(notNullValue()));
-        assertThat(entity.getCreatedBy(), is(AUDITOR));
-        assertThat(entity.getCreatedDate(), is(notNullValue()));
-        assertThat(entity.getCreatedDate().toDate().getTime(), is(greaterThanOrEqualTo(before.getTime())));
-        assertThat(entity.getCreatedDate().toDate().getTime(), is(lessThanOrEqualTo(after.getTime())));
-        assertThat(entity.getLastModifiedDate(), is(nullValue()));
-        assertThat(entity.getLastModifiedBy(), is(nullValue()));
+        assertThat(entity.getCreatedBy(), isPresent());
+        assertThat(entity.getCreatedBy().get(), is(AUDITOR));
+        assertThat(entity.getCreatedDate(), isPresent());
+        assertThat(entity.getCreatedDate().get().toEpochMilli(), is(greaterThanOrEqualTo(before.getTime())));
+        assertThat(entity.getCreatedDate().get().toEpochMilli(), is(lessThanOrEqualTo(after.getTime())));
+        assertThat(entity.getLastModifiedDate(), isEmpty());
+        assertThat(entity.getLastModifiedBy(), isEmpty());
     }
 
     @Test
@@ -78,13 +79,13 @@ public class AuditDataEventListenerTest {
         final Date before = new Date();
         listener.onEvent(new BeforeUpdateDataStoreEvent(repositoryMetadata, null, entity));
         final Date after = new Date();
-        assertThat(entity.getLastModifiedBy(), is(notNullValue()));
-        assertThat(entity.getLastModifiedBy(), is(AUDITOR));
-        assertThat(entity.getLastModifiedDate(), is(notNullValue()));
-        assertThat(entity.getLastModifiedDate().toDate().getTime(), is(greaterThanOrEqualTo(before.getTime())));
-        assertThat(entity.getLastModifiedDate().toDate().getTime(), is(lessThanOrEqualTo(after.getTime())));
-        assertThat(entity.getCreatedDate(), is(nullValue()));
-        assertThat(entity.getCreatedBy(), is(nullValue()));
+        assertThat(entity.getLastModifiedBy(), isPresent());
+        assertThat(entity.getLastModifiedBy().get(), is(AUDITOR));
+        assertThat(entity.getLastModifiedDate(), isPresent());
+        assertThat(entity.getLastModifiedDate().get().toEpochMilli(), is(greaterThanOrEqualTo(before.getTime())));
+        assertThat(entity.getLastModifiedDate().get().toEpochMilli(), is(lessThanOrEqualTo(after.getTime())));
+        assertThat(entity.getCreatedDate(), isEmpty());
+        assertThat(entity.getCreatedBy(), isEmpty());
     }
 
 }

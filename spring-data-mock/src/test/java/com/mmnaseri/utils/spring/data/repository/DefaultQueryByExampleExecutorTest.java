@@ -35,7 +35,7 @@ import static org.hamcrest.Matchers.*;
 public class DefaultQueryByExampleExecutorTest {
 
     private DefaultQueryByExampleExecutor executor;
-    private DataStore<Serializable, Person> dataStore;
+    private DataStore<Object, Person> dataStore;
 
     @BeforeMethod
     public void setUp() throws Exception {

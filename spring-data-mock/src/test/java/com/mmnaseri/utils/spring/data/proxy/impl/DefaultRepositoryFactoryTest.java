@@ -46,7 +46,7 @@ public class DefaultRepositoryFactoryTest {
         factory.getInstance(null, ClearableSimpleCrudPersonRepository.class, RepositoryClearerMapping.class);
         assertThat(dataStoreRegistry.has(Person.class), is(true));
         final ClearableSimpleCrudPersonRepository repository = factory.getInstance(null, ClearableSimpleCrudPersonRepository.class, RepositoryClearerMapping.class);
-        final DataStore<Serializable, Person> dataStore = dataStoreRegistry.getDataStore(Person.class);
+        final DataStore<Object, Person> dataStore = dataStoreRegistry.getDataStore(Person.class);
         dataStore.save("k1", new Person().setId("k1").setLastName("Sadeghi"));
         dataStore.save("k2", new Person().setId("k2").setLastName("Naseri"));
         dataStore.save("k3", new Person().setId("k3").setLastName("Sadeghi"));
@@ -85,7 +85,7 @@ public class DefaultRepositoryFactoryTest {
         factory.getInstance(null, ClearableSimpleCrudPersonRepository.class, RepositoryClearerMapping.class);
         assertThat(dataStoreRegistry.has(Person.class), is(true));
         final ClearableSimpleCrudPersonRepository repository = factory.getInstance(null, ClearableSimpleCrudPersonRepository.class, RepositoryClearerMapping.class);
-        final DataStore<Serializable, Person> dataStore = dataStoreRegistry.getDataStore(Person.class);
+        final DataStore<Object, Person> dataStore = dataStoreRegistry.getDataStore(Person.class);
         dataStore.save("k1", new Person().setId("k1").setLastName("Sadeghi"));
         dataStore.save("k2", new Person().setId("k2").setLastName("Naseri"));
         dataStore.save("k3", new Person().setId("k3").setLastName("Sadeghi"));

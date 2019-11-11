@@ -1,5 +1,11 @@
 package com.mmnaseri.utils.spring.data.query.impl;
 
+import java.util.LinkedList;
+import java.util.List;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import com.mmnaseri.utils.spring.data.error.DataFunctionException;
 import com.mmnaseri.utils.spring.data.error.InvalidArgumentException;
 import com.mmnaseri.utils.spring.data.proxy.RepositoryConfiguration;
@@ -7,12 +13,6 @@ import com.mmnaseri.utils.spring.data.query.DataFunction;
 import com.mmnaseri.utils.spring.data.query.QueryDescriptor;
 import com.mmnaseri.utils.spring.data.store.DataStore;
 import com.mmnaseri.utils.spring.data.tools.PropertyUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
-import java.io.Serializable;
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  * This function provides support for the delete data operation, by issuing a delete request for every
@@ -27,7 +27,7 @@ public class DeleteDataFunction implements DataFunction<List<?>> {
     private static final Log log = LogFactory.getLog(DeleteDataFunction.class);
 
     @Override
-    public <K extends Serializable, E> List<E> apply(DataStore<K, E> dataStore, QueryDescriptor query, RepositoryConfiguration repositoryConfiguration, List<E> selection) {
+    public <K, E> List<E> apply(DataStore<K, E> dataStore, QueryDescriptor query, RepositoryConfiguration repositoryConfiguration, List<E> selection) {
         if (dataStore == null) {
             log.error("Cannot delete entities when the data store is null");
             throw new InvalidArgumentException("Data store cannot be null");

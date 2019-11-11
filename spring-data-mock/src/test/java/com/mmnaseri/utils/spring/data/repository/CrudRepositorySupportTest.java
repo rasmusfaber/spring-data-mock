@@ -29,7 +29,7 @@ public class CrudRepositorySupportTest {
     @Test
     public void testIntegrity() throws Exception {
         final CrudRepositorySupport support = new CrudRepositorySupport();
-        final MemoryDataStore<Serializable, Object> dataStore = new MemoryDataStore<>(Object.class);
+        final MemoryDataStore<Object, Object> dataStore = new MemoryDataStore<>(Object.class);
         support.setDataStore(dataStore);
         final ImmutableRepositoryMetadata repositoryMetadata = new ImmutableRepositoryMetadata(String.class, Person.class, SimplePersonRepository.class, "id");
         support.setRepositoryMetadata(repositoryMetadata);
@@ -43,17 +43,17 @@ public class CrudRepositorySupportTest {
     @Test
     public void testPerformingUpdates() throws Exception {
         final CrudRepositorySupport support = new CrudRepositorySupport();
-        final SpyingDataStore<Serializable, Object> dataStore = new SpyingDataStore<>(null, new AtomicLong());
+        final SpyingDataStore<Object, Object> dataStore = new SpyingDataStore<>(null, new AtomicLong());
         support.setDataStore(dataStore);
         support.setRepositoryMetadata(new ImmutableRepositoryMetadata(String.class, Person.class, SimplePersonRepository.class, "id"));
         final Person entity = new Person();
         entity.setId("k1");
         final Object saved = support.save(entity);
-        assertThat(saved, Matchers.<Object>is(entity));
+        assertThat(saved, Matchers.is(entity));
         assertThat(dataStore.getRequests(), hasSize(1));
-        assertThat(dataStore.getRequests().get(0).getEntity(), Matchers.<Object>is(entity));
+        assertThat(dataStore.getRequests().get(0).getEntity(), Matchers.is(entity));
         assertThat(dataStore.getRequests().get(0).getOperation(), is(Operation.SAVE));
-        assertThat(dataStore.getRequests().get(0).getKey(), Matchers.<Serializable>is(entity.getId()));
+        assertThat(dataStore.getRequests().get(0).getKey(), Matchers.is(entity.getId()));
     }
 
     /**
@@ -79,9 +79,9 @@ public class CrudRepositorySupportTest {
         support.setKeyGenerator(new UUIDKeyGenerator());
         final Person entity = new Person();
         final Object saved = support.save(entity);
-        assertThat(saved, Matchers.<Object>is(entity));
+        assertThat(saved, Matchers.is(entity));
         assertThat(dataStore.getRequests(), hasSize(1));
-        assertThat(dataStore.getRequests().get(0).getEntity(), Matchers.<Object>is(entity));
+        assertThat(dataStore.getRequests().get(0).getEntity(), Matchers.is(entity));
         assertThat(dataStore.getRequests().get(0).getOperation(), is(Operation.SAVE));
         assertThat(dataStore.getRequests().get(0).getKey(), is(notNullValue()));
     }

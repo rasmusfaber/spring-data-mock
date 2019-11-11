@@ -1,10 +1,9 @@
 package com.mmnaseri.utils.spring.data.query;
 
+import java.util.List;
+
 import com.mmnaseri.utils.spring.data.proxy.RepositoryConfiguration;
 import com.mmnaseri.utils.spring.data.store.DataStore;
-
-import java.io.Serializable;
-import java.util.List;
 
 /**
  * <p>This interface encapsulates a data function. A data function is a function that applies to an already aggregated
@@ -18,6 +17,6 @@ import java.util.List;
  */
 public interface DataFunction<R> {
 
-    <K extends Serializable, E> R apply(DataStore<K, E> dataStore, QueryDescriptor query, RepositoryConfiguration configuration, List<E> selection);
+    <K, E> R apply(DataStore<K, E> dataStore, QueryDescriptor query, RepositoryConfiguration configuration, List<E> selection);
 
 }

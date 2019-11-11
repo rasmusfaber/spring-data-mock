@@ -2,6 +2,8 @@ package com.mmnaseri.utils.spring.data.proxy.impl.adapters;
 
 import com.mmnaseri.utils.spring.data.domain.impl.ImmutableInvocation;
 import com.mmnaseri.utils.spring.data.sample.usecases.proxy.ReturnTypeSampleRepository;
+
+import org.springframework.data.domain.Sort;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
@@ -26,7 +28,7 @@ public class PageIterableResultAdapterTest {
         assertThat(value.getNumber(), is(0));
         assertThat(value.getNumberOfElements(), is(4));
         assertThat(value.getSize(), is(0));
-        assertThat(value.getSort(), is(nullValue()));
+        assertThat(value.getSort(), is(Sort.unsorted()));
         assertThat(value.getContent(), hasSize(4));
         assertThat(value.getContent(), containsInAnyOrder((Object) 1, 2, 3, 4));
     }

@@ -26,7 +26,7 @@ public class InformationExposingRepositoryFactory implements RepositoryFactory {
     }
 
     @Override
-    public <E> E getInstance(KeyGenerator<? extends Serializable> keyGenerator, Class<E> repositoryInterface, Class... implementations) {
+    public <E> E getInstance(KeyGenerator<?> keyGenerator, Class<E> repositoryInterface, Class... implementations) {
         final E instance = delegate.getInstance(keyGenerator, repositoryInterface, implementations);
         //noinspection unchecked
         final RepositoryConfiguration configuration = new ImmutableRepositoryConfiguration(this.configuration.getRepositoryMetadataResolver().resolve(repositoryInterface), keyGenerator, Arrays.<Class<?>>asList(implementations));

@@ -173,8 +173,8 @@ public class RepositoryFactoryBuilderTest {
 
     @Test
     public void testUsingDefaultDataStoreRegistryAndCustomDataStores() throws Exception {
-        final MemoryDataStore<Serializable, Integer> x = new MemoryDataStore<>(Integer.class);
-        final MemoryDataStore<Serializable, String> y = new MemoryDataStore<>(String.class);
+        final MemoryDataStore<Object, Integer> x = new MemoryDataStore<>(Integer.class);
+        final MemoryDataStore<Object, String> y = new MemoryDataStore<>(String.class);
         final RepositoryFactory factory = RepositoryFactoryBuilder.builder().registerDataStore(x).and(y).build();
         assertThat(factory, is(notNullValue()));
         assertThat(factory.getConfiguration(), is(notNullValue()));
@@ -303,7 +303,7 @@ public class RepositoryFactoryBuilderTest {
     @Test
     public void testDefaultAuditorAware() throws Exception {
         final AuditorAware<String> auditorAware = new RepositoryFactoryBuilder.DefaultAuditorAware();
-        assertThat(auditorAware.getCurrentAuditor(), is(RepositoryFactoryBuilder.DEFAULT_USER));
+        assertThat(auditorAware.getCurrentAuditor().get(), is(RepositoryFactoryBuilder.DEFAULT_USER));
     }
 
     @Test
@@ -330,7 +330,7 @@ public class RepositoryFactoryBuilderTest {
 
     @Test
     public void testMockingWithCustomKeyGeneration() throws Exception {
-        final NoOpKeyGenerator<Serializable> keyGenerator = new NoOpKeyGenerator<>();
+        final NoOpKeyGenerator<Object> keyGenerator = new NoOpKeyGenerator<>();
         final ConfiguredSimplePersonRepository repository = RepositoryFactoryBuilder.builder().generateKeysUsing(keyGenerator).usingImplementation(ConfiguredMapping.class).mock(ConfiguredSimplePersonRepository.class);
         assertThat(repository.getRepositoryConfiguration(), is(notNullValue()));
         assertThat(repository.getRepositoryConfiguration().getKeyGenerator(), is(notNullValue()));
